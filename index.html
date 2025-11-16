@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposición de Arte: Detalles de Obras</title>
+    <!-- Carga de Tailwind CSS para un diseño responsive y moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #4b5563; /* Gris oscuro para las etiquetas */
+        }
+        .info-value {
+            color: #1f2937; /* Gris muy oscuro para los valores */
+            text-align: right;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-2">Galería de Arte</h1>
+        <p class="text-lg text-gray-600">Detalles de las Obras en Exposición</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto space-y-12">
+
+        <!-- Plantilla para cada Obra (Repetir este bloque) -->
+
+        <!-- PINTURA 1: Remanso Fluvial Asiático -->
+        <section id="remanso" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-500">
+            <div class="mb-4">
+                <h2 class="text-3xl font-bold text-gray-800 mb-1">Remanso Fluvial Asiático</h2>
+                <p class="text-lg text-gray-600">por C. CHENG</p>
+            </div>
+            
+            <figure class="mb-6 rounded-lg overflow-hidden border border-gray-200">
+                <!-- Imagen Placeholder: Reemplazar con URL de imagen real si se tiene -->
+                <img src="https://placehold.co/800x500/81C7D4/ffffff?text=Remanso+Fluvial+Asiático" 
+                     alt="Pintura Remanso Fluvial Asiático"
+                     class="w-full h-auto object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x500/81C7D4/ffffff?text=Imagen+No+Disponible';">
+                <figcaption class="p-2 text-sm text-gray-500 text-center">Óleo sobre lienzo. (Imagen Referencial)</figcaption>
+            </figure>
+
+            <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
+                <div class="info-item">
+                    <span class="info-label">Técnica</span>
+                    <span class="info-value">Óleo sobre lienzo</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Dimensiones</span>
+                    <span class="info-value">92 x 63 cm</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Precio de Venta</span>
+                    <span class="info-value text-green-700 font-bold">$800 USD</span>
+                </div>
+                <div class="info-item border-b-0">
+                    <span class="info-label">Disponibilidad</span>
+                    <span class="info-value text-blue-600 font-semibold">Disponible para la venta</span>
+                </div>
+            </div>
+
+            <div class="prose max-w-none text-gray-700">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Descripción de la Obra</h3>
+                <p class="mb-4">La pintura tiene una atmósfera muy particular, casi melancólica y serena, con ese tratamiento de la luz y el color que es tan característico de ciertas escuelas asiáticas.</p>
+                <p>A través de una paleta sutil y el uso magistral de la luz, C. CHENG nos transporta a una escena ribereña donde la vida transcurre en armonía con la naturaleza, capturando la esencia de un paisaje tropical con sus humildes moradas y la quietud de sus aguas.</p>
+            </div>
+        </section>
+
+        <!-- PINTURA 2: Tarde Otoñal en Paris -->
+        <section id="paris" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-pink-500">
+            <div class="mb-4">
+                <h2 class="text-3xl font-bold text-gray-800 mb-1">Tarde Otoñal en Paris</h2>
+                <p class="text-lg text-gray-600">por ANÓNIMO</p>
+            </div>
+            
+            <figure class="mb-6 rounded-lg overflow-hidden border border-gray-200">
+                <!-- Imagen Placeholder -->
+                <img src="https://placehold.co/800x500/F4C3D0/ffffff?text=Tarde+Otoñal+en+Paris" 
+                     alt="Pintura Tarde Otoñal en Paris"
+                     class="w-full h-auto object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x500/F4C3D0/ffffff?text=Imagen+No+Disponible';">
+                <figcaption class="p-2 text-sm text-gray-500 text-center">Óleo sobre lienzo. (Imagen Referencial)</figcaption>
+            </figure>
+
+            <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
+                <div class="info-item">
+                    <span class="info-label">Técnica</span>
+                    <span class="info-value">Óleo sobre lienzo</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Dimensiones</span>
+                    <span class="info-value">63 x 48 cm</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Precio de Venta</span>
+                    <span class="info-value text-green-700 font-bold">$200 USD</span>
+                </div>
+                <div class="info-item border-b-0">
+                    <span class="info-label">Disponibilidad</span>
+                    <span class="info-value text-blue-600 font-semibold">Disponible para la venta</span>
+                </div>
+            </div>
+
+            <div class="prose max-w-none text-gray-700">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Descripción de la Obra</h3>
+                <p class="mb-4">Este cuadro logra transportarnos a una clásica avenida parisina, envuelta en una atmósfera brumosa pero no por ello, menos romántica.</p>
+                <p>La pincelada empastada y expresiva captura la luminosidad de los charcos en el adoquinado y el suave reflejo de las fachadas. Las figuras, elegantemente vestidas, añaden dinamismo a la escena, mientras que la paleta de grises, ocres y azules realza la melancolía y el encanto de un instante urbano otoñal.</p>
+            </div>
+        </section>
+
+        <!-- PINTURA 3: Por los callejones de Marruecos -->
+        <section id="marruecos" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-500">
+            <div class="mb-4">
+                <h2 class="text-3xl font-bold text-gray-800 mb-1">Por los callejones de Marruecos</h2>
+                <p class="text-lg text-gray-600">por P. YOAJIN</p>
+            </div>
+            
+            <figure class="mb-6 rounded-lg overflow-hidden border border-gray-200">
+                <!-- Imagen Placeholder -->
+                <img src="https://placehold.co/800x500/F5E6B8/ffffff?text=Callejones+de+Marruecos" 
+                     alt="Pintura Por los callejones de Marruecos"
+                     class="w-full h-auto object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x500/F5E6B8/ffffff?text=Imagen+No+Disponible';">
+                <figcaption class="p-2 text-sm text-gray-500 text-center">Óleo sobre lienzo. Año: 1988. (Imagen Referencial)</figcaption>
+            </figure>
+
+            <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
+                <div class="info-item">
+                    <span class="info-label">Técnica</span>
+                    <span class="info-value">Óleo sobre lienzo</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Dimensiones</span>
+                    <span class="info-value">60 x 90 cm</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Precio de Venta</span>
+                    <span class="info-value text-green-700 font-bold">$350 USD</span>
+                </div>
+                <div class="info-item border-b-0">
+                    <span class="info-label">Disponibilidad</span>
+                    <span class="info-value text-blue-600 font-semibold">Disponible para la venta</span>
+                </div>
+            </div>
+
+            <div class="prose max-w-none text-gray-700">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Descripción de la Obra</h3>
+                <p class="mb-4">Esta pintura al óleo nos sumerge en la vibrante vida de una antigua y exótica ciudad de Oriente Medio.</p>
+                <p>P. Yoajin captura la esencia de sus intrincados callejones, donde la luz del sol baña las fachadas de tonos ocres y el detalle arquitectónico de los arcos y edificios evoca una rica historia.</p>
+                <p>Las figuras, ataviadas con vestimentas tradicionales, añaden un toque de autenticidad y dinamismo, invitando al espectador a un viaje a través de un espacio lleno de misterio y cultura.</p>
+            </div>
+        </section>
+
+        <!-- PINTURA 4: Atardecer en el Desierto (P. YOAJIN) -->
+        <section id="atardecer-yoajin" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-500">
+            <div class="mb-4">
+                <h2 class="text-3xl font-bold text-gray-800 mb-1">Atardecer en el Desierto</h2>
+                <p class="text-lg text-gray-600">por P. YOAJIN</p>
+            </div>
+            
+            <figure class="mb-6 rounded-lg overflow-hidden border border-gray-200">
+                <!-- Imagen Placeholder -->
+                <img src="https://placehold.co/800x500/E87E5E/ffffff?text=Atardecer+en+el+Desierto" 
+                     alt="Pintura Atardecer en el Desierto"
+                     class="w-full h-auto object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x500/E87E5E/ffffff?text=Imagen+No+Disponible';">
+                <figcaption class="p-2 text-sm text-gray-500 text-center">Óleo sobre lienzo. Año: 1988. (Imagen Referencial)</figcaption>
+            </figure>
+
+            <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
+                <div class="info-item">
+                    <span class="info-label">Técnica</span>
+                    <span class="info-value">Óleo sobre lienzo</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Dimensiones</span>
+                    <span class="info-value">60 x 45 cm</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Precio de Venta</span>
+                    <span class="info-value text-green-700 font-bold">$350 USD</span>
+                </div>
+                <div class="info-item border-b-0">
+                    <span class="info-label">Disponibilidad</span>
+                    <span class="info-value text-blue-600 font-semibold">Disponible para la venta</span>
+                </div>
+            </div>
+
+            <div class="prose max-w-none text-gray-700">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Descripción de la Obra</h3>
+                <p class="mb-4">En 'Atardecer en el Desierto', P. Yoajin nos invita a contemplar la serena belleza de un campamento beduino en el vasto paisaje desértico.</p>
+                <p>La delicadeza de la paleta captura la atmósfera cálida y mística del atardecer, donde el sol tiñe el cielo de suaves rosados y naranjas. Las palmeras ofrecen sombra a la tienda, donde figuras se reúnen en un momento de pausa, mientras un camello y su jinete personifican el espíritu nómada de la región. Una obra que evoca la calma y la infinitud de los horizontes de arena.</p>
+            </div>
+        </section>
+
+        <!-- PINTURA 5: Bajo el Sol del Desierto (SUWA J. JEE) -->
+        <section id="sol-desierto" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-500">
+            <div class="mb-4">
+                <h2 class="text-3xl font-bold text-gray-800 mb-1">Bajo el Sol del Desierto</h2>
+                <p class="text-lg text-gray-600">por SUWA J. JEE</p>
+            </div>
+            
+            <figure class="mb-6 rounded-lg overflow-hidden border border-gray-200">
+                <!-- Imagen Placeholder -->
+                <img src="https://placehold.co/800x500/C86B6B/ffffff?text=Bajo+el+Sol+del+Desierto" 
+                     alt="Pintura Bajo el Sol del Desierto"
+                     class="w-full h-auto object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x500/C86B6B/ffffff?text=Imagen+No+Disponible';">
+                <figcaption class="p-2 text-sm text-gray-500 text-center">Óleo sobre lienzo. Año: 1988. (Imagen Referencial)</figcaption>
+            </figure>
+
+            <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
+                <div class="info-item">
+                    <span class="info-label">Técnica</span>
+                    <span class="info-value">Óleo sobre lienzo</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Dimensiones</span>
+                    <span class="info-value">90 x 60 cm</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Precio de Venta</span>
+                    <span class="info-value text-green-700 font-bold">$350 USD</span>
+                </div>
+                <div class="info-item border-b-0">
+                    <span class="info-label">Disponibilidad</span>
+                    <span class="info-value text-blue-600 font-semibold">Disponible para la venta</span>
+                </div>
+            </div>
+
+            <div class="prose max-w-none text-gray-700">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Descripción de la Obra</h3>
+                <p class="mb-4">En 'Bajo el Sol del Desierto', Suwa J. Lee (1988) sumerge al espectador en una detallada visión de la vida beduina, capturando la esencia de un campamento nómada bajo la inmensidad del cielo.</p>
+                <p>Su magistral manejo de la luz baña la escena con tonos dorados, ocres y rosáceos, sugiriendo un amanecer o atardecer que impregna el vasto paisaje y evoca un sentido de aventura y exotismo.</p>
+                <p>La delicada pincelada construye texturas creíbles en la arena y los toldos, poblando la composición con figuras y camellos que reflejan la vida cotidiana de la comunidad. Esta pieza es una evocación de un estilo de vida, de resiliencia y de la conexión atemporal del hombre con la naturaleza en los horizontes infinitos y místicos del desierto.</p>
+            </div>
+        </section>
+
+        <!-- PINTURA 6: La Añoranza del Granjero (C. POLEMONT) -->
+        <section id="añoranza-granjero" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-600">
+            <div class="mb-4">
+                <h2 class="text-3xl font-bold text-gray-800 mb-1">La Añoranza del Granjero</h2>
+                <p class="text-lg text-gray-600">por C. POLEMONT</p>
+            </div>
+            
+            <figure class="mb-6 rounded-lg overflow-hidden border border-gray-200">
+                <!-- Imagen Placeholder -->
+                <img src="https://placehold.co/800x500/808000/ffffff?text=Añoranza+del+Granjero" 
+                     alt="Pintura La Añoranza del Granjero"
+                     class="w-full h-auto object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x500/808000/ffffff?text=Imagen+No+Disponible';">
+                <figcaption class="p-2 text-sm text-gray-500 text-center">Óleo sobre lienzo. (Imagen Referencial)</figcaption>
+            </figure>
+
+            <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
+                <div class="info-item">
+                    <span class="info-label">Técnica</span>
+                    <span class="info-value">Óleo sobre lienzo</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Dimensiones</span>
+                    <span class="info-value">25 x 21 cm</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Precio de Venta</span>
+                    <span class="info-value text-green-700 font-bold">$75 USD</span>
+                </div>
+                <div class="info-item border-b-0">
+                    <span class="info-label">Disponibilidad</span>
+                    <span class="info-value text-blue-600 font-semibold">Disponible para la venta</span>
+                </div>
+            </div>
+
+            <div class="prose max-w-none text-gray-700">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Descripción de la Obra</h3>
+                <p class="mb-4">En 'La Añoranza del Granjero', C. Polemónt capta la esencia de la vida campestre, presentándonos una cabaña de madera con estructuras desgastadas por el tiempo en un campo bañado por una luz suave.</p>
+                <p>Esta luz, que sugiere un amanecer esperanzador o un anochecer cansado, junto a detalles como el cesto olvidado y un pozo distante, evocan una quietud casi nostálgica.</p>
+                <p>La pincelada de textura evidente resalta la autenticidad del paisaje, mientras que los tonos terrosos y verdes, bajo un cielo amplio, invitan a la contemplación y al recuerdo de tiempos más simples.</p>
+            </div>
+        </section>
+
+        <!-- PINTURA 7: Paisaje Alpino (WILSON) -->
+        <section id="alpino" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-teal-500">
+            <div class="mb-4">
+                <h2 class="text-3xl font-bold text-gray-800 mb-1">Paisaje Alpino</h2>
+                <p class="text-lg text-gray-600">por WILSON</p>
+            </div>
+            
+            <figure class="mb-6 rounded-lg overflow-hidden border border-gray-200">
+                <!-- Imagen Placeholder -->
+                <img src="https://placehold.co/800x500/A0D2DB/ffffff?text=Paisaje+Alpino" 
+                     alt="Pintura Paisaje Alpino"
+                     class="w-full h-auto object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x500/A0D2DB/ffffff?text=Imagen+No+Disponible';">
+                <figcaption class="p-2 text-sm text-gray-500 text-center">Óleo sobre lienzo. (Imagen Referencial)</figcaption>
+            </figure>
+
+            <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
+                <div class="info-item">
+                    <span class="info-label">Técnica</span>
+                    <span class="info-value">Óleo sobre lienzo</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Dimensiones</span>
+                    <span class="info-value">25 x 21 cm</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Precio de Venta</span>
+                    <span class="info-value text-green-700 font-bold">$100 USD</span>
+                </div>
+                <div class="info-item border-b-0">
+                    <span class="info-label">Disponibilidad</span>
+                    <span class="info-value text-blue-600 font-semibold">Disponible para la venta</span>
+                </div>
+            </div>
+
+            <div class="prose max-w-none text-gray-700">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Descripción de la Obra</h3>
+                <p class="mb-4">El artista Wilson demuestra un excelente dominio de la composición al transportarnos a un paisaje montañoso de imponente belleza.</p>
+                <p>Picos nevados y bosques de coníferas se reflejan con serenidad en un lago alpino, creando una atmósfera tan dramática como serena.</p>
+                <p>La pincelada robusta acentúa el contraste entre la blancura de la nieve y el verde vibrante de los árboles, mientras que el uso magistral de la luz realza las texturas. Esta obra invita al espectador a la contemplación de la naturaleza salvaje y sublime.</p>
+            </div>
+        </section>
+        
+        <!-- PINTURA 8: Contemplación (MA. EUGENIA VITERI C.) -->
+        <section id="contemplacion" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-indigo-500">
+            <div class="mb-4">
+                <h2 class="text-3xl font-bold text-gray-800 mb-1">Contemplación</h2>
+                <p class="text-lg text-gray-600">por MA. EUGENIA VITERI C.</p>
+            </div>
+            
+            <figure class="mb-6 rounded-lg overflow-hidden border border-gray-200">
+                <!-- Imagen Placeholder -->
+                <img src="https://placehold.co/800x500/8B8CFB/ffffff?text=Contemplación" 
+                     alt="Pintura Contemplación"
+                     class="w-full h-auto object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x500/8B8CFB/ffffff?text=Imagen+No+Disponible';">
+                <figcaption class="p-2 text-sm text-gray-500 text-center">Óleo sobre lienzo. Año: 2025. (Imagen Referencial)</figcaption>
+            </figure>
+
+            <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
+                <div class="info-item">
+                    <span class="info-label">Técnica</span>
+                    <span class="info-value">Óleo sobre lienzo</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Dimensiones</span>
+                    <span class="info-value">50 x 70 cm</span>
+                </div>
+                <div class="info-item border-b-0">
+                    <span class="info-label">Disponibilidad</span>
+                    <span class="info-value text-red-600 font-semibold">Colección Privada</span>
+                </div>
+            </div>
+
+            <div class="prose max-w-none text-gray-700">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Descripción de la Obra</h3>
+                <p class="mb-4">En 'Contemplación', la artista María Eugenia Viteri C. presenta un retrato al óleo que irradia gracia y profundidad.</p>
+                <p>La figura de la dama, capturada en un momento de introspección, dirige su mirada hacia un punto distante, invitando al espectador a compartir su quietud y sus pensamientos.</p>
+                <p>La delicada pose de su mano, junto a la luminosidad de las perlas y el suave contraste con el fondo azulado, realza una elegancia atemporal. A través de una paleta sutil y el dominio del claroscuro, María Eugenia logra transmitir no solo la imagen, sino la esencia y el alma de la retratada, en un diálogo silencioso entre la obra y quien la observa.</p>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Sección de Contacto Unificada (para todas las obras) -->
+    <footer class="max-w-4xl mx-auto mt-12 pt-6 border-t border-gray-300 text-center bg-white p-6 rounded-xl card-shadow">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Información de Contacto</h3>
+        <p class="text-gray-700 mb-2">Para informes sobre precios, disponibilidad y detalles de compra:</p>
+        
+        <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-8 text-lg">
+            <div class="flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <a href="mailto:mviteri57@gmail.com" class="text-blue-600 hover:text-blue-800 font-medium">mviteri57@gmail.com</a>
+            </div>
+            <div class="flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <a href="tel:0999892489" class="text-green-600 hover:text-green-800 font-medium">0999892489</a>
+            </div>
+        </div>
+        <p class="mt-4 text-sm text-gray-500">Persona Encargada: María Eugenia Viteri C.</p>
+    </footer>
+    
+    <script>
+        // Función para desplazamiento suave al hacer clic en un enlace de anclaje (si no se usa el QR directamente)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
