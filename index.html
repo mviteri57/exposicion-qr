@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exposición de Arte: Detalles de Obras</title>
+    <title>Exposición de Arte: Buscador de Obras</title>
     <!-- Carga de Tailwind CSS para un diseño responsive y moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Iconos de FontAwesome para el botón de WhatsApp -->
+    <!-- Iconos de FontAwesome para el botón de WhatsApp y la Lupa -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
@@ -60,19 +60,40 @@
 </head>
 <body class="p-4 md:p-8 pb-24"> <!-- pb-24 para dar espacio al botón de whatsapp -->
 
-    <header class="text-center mb-10">
+    <header class="text-center mb-6">
         <h1 class="text-4xl font-extrabold text-gray-800 mb-2">Galería de Arte</h1>
         <p class="text-lg text-gray-600">Detalles de las Obras en Exposición</p>
     </header>
 
-    <main class="max-w-4xl mx-auto space-y-12">
+    <!-- ==========================================
+         BARRA DE BÚSQUEDA (NUEVO)
+         ========================================== -->
+    <div class="sticky top-2 z-50 mb-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="relative shadow-lg rounded-lg">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                    <!-- Icono de lupa -->
+                    <i class="fas fa-search text-blue-500 text-lg"></i>
+                </div>
+                <input type="text" id="buscadorInput" onkeyup="buscarObras()" 
+                    class="block w-full p-4 pl-12 text-base text-gray-900 border-0 rounded-lg bg-white focus:ring-4 focus:ring-blue-300 transition-all placeholder-gray-400" 
+                    placeholder="Buscar obra, artista, precio o técnica..." autocomplete="off">
+            </div>
+            <!-- Mensaje de "No encontrado" -->
+            <div id="mensajeNoResultados" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-2 text-center font-semibold">
+                No se encontraron obras que coincidan con tu búsqueda.
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-4xl mx-auto space-y-12" id="contenedorObras">
 
         <!-- ==========================================
-             OBRAS CON CÓDIGOS QR YA IMPRESOS (y correcciones)
+             OBRAS CON CÓDIGOS QR YA IMPRESOS
              ========================================== -->
 
         <!-- PINTURA 1: Remanso Fluvial Asiático -->
-        <section id="remanso" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-500 scroll-mt-4">
+        <section id="remanso" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Remanso Fluvial Asiático</h2>
                 <p class="text-lg text-gray-600">por C. CHENG</p>
@@ -84,7 +105,7 @@
             <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
                 <div class="info-item"><span class="info-label">Técnica</span><span class="info-value">Óleo sobre lienzo</span></div>
                 <div class="info-item"><span class="info-label">Dimensiones</span><span class="info-value">92 x 63 cm</span></div>
-                <div class="info-item"><span class="info-label">Precio</span><span class="info-value text-green-700 font-bold">$800 USD</span></div> <!-- PDF dice $800 (1200) -->
+                <div class="info-item"><span class="info-label">Precio</span><span class="info-value text-green-700 font-bold">$800 USD</span></div> 
                 <div class="info-item border-b-0"><span class="info-label">Disponibilidad</span><span class="info-value text-blue-600 font-semibold">Disponible</span></div>
             </div>
             <div class="prose max-w-none text-gray-700">
@@ -95,7 +116,7 @@
         </section>
 
         <!-- PINTURA 2: Tarde Otoñal en Paris -->
-        <section id="paris" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-pink-500 scroll-mt-4">
+        <section id="paris" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-pink-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Tarde Otoñal en Paris</h2>
                 <p class="text-lg text-gray-600">por ANÓNIMO</p>
@@ -118,7 +139,7 @@
         </section>
 
         <!-- OBRA 3: Frutos de la Tierra -->
-        <section id="obra-3" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-600">
+        <section id="obra-3" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Frutos de la Tierra</h2>
                 <p class="text-lg text-gray-600">por THONG LE (1989)</p>
@@ -140,8 +161,8 @@
             </div>
         </section>
 
-        <!-- PINTURA 4 (C. POLEMONT): La Añoranza del Granjero (CORREGIDO PRECIO) -->
-        <section id="añoranza-granjero" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-600 scroll-mt-4">
+        <!-- PINTURA 4 (C. POLEMONT): La Añoranza del Granjero -->
+        <section id="añoranza-granjero" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">La Añoranza del Granjero</h2>
                 <p class="text-lg text-gray-600">por C. POLEMONT</p>
@@ -153,7 +174,7 @@
             <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
                 <div class="info-item"><span class="info-label">Técnica</span><span class="info-value">Óleo sobre lienzo</span></div>
                 <div class="info-item"><span class="info-label">Dimensiones</span><span class="info-value">25 x 21 cm</span></div>
-                <div class="info-item"><span class="info-label">Precio</span><span class="info-value text-green-700 font-bold">$100 USD</span></div> <!-- CORREGIDO a $100 -->
+                <div class="info-item"><span class="info-label">Precio</span><span class="info-value text-green-700 font-bold">$100 USD</span></div> 
                 <div class="info-item border-b-0"><span class="info-label">Disponibilidad</span><span class="info-value text-blue-600 font-semibold">Disponible</span></div>
             </div>
             <div class="prose max-w-none text-gray-700">
@@ -163,8 +184,8 @@
             </div>
         </section>
 
-        <!-- PINTURA 5: Paisaje Alpino (WILSON) (ID original #alpino) -->
-        <section id="alpino" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-teal-500 scroll-mt-4">
+        <!-- PINTURA 5: Paisaje Alpino (WILSON) -->
+        <section id="alpino" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-teal-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Paisaje Alpino</h2>
                 <p class="text-lg text-gray-600">por WILSON</p>
@@ -186,10 +207,10 @@
             </div>
         </section>
 
-        <!-- PINTURA 6: Por los callejones de Jeddah (CORREGIDO TÍTULO) -->
-        <section id="marruecos" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-500 scroll-mt-4">
+        <!-- PINTURA 6: Por los callejones de Jeddah -->
+        <section id="marruecos" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-500 scroll-mt-24 obra-item">
             <div class="mb-4">
-                <h2 class="text-3xl font-bold text-gray-800 mb-1">Por los callejones de Jeddah</h2> <!-- Título corregido -->
+                <h2 class="text-3xl font-bold text-gray-800 mb-1">Por los callejones de Jeddah</h2>
                 <p class="text-lg text-gray-600">por P. YOAJIN</p>
             </div>
             <figure class="mb-6 rounded-lg overflow-hidden border border-gray-200">
@@ -210,7 +231,7 @@
         </section>
         
         <!-- PINTURA 7: Bajo el Sol del Desierto (SUWA J. JEE) -->
-        <section id="sol-desierto" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-500 scroll-mt-4">
+        <section id="sol-desierto" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Bajo el Sol del Desierto</h2>
                 <p class="text-lg text-gray-600">por SUWA J. JEE</p>
@@ -234,7 +255,7 @@
         </section>
 
         <!-- OBRA 8: Guardianes del Tiempo -->
-        <section id="obra-8" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-indigo-600">
+        <section id="obra-8" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-indigo-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Díptico: Guardianes del Tiempo</h2>
                 <p class="text-lg text-gray-600">por JOB</p>
@@ -256,7 +277,7 @@
         </section>
 
         <!-- OBRA 9: Horizontes Lejanos -->
-        <section id="obra-9" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-800">
+        <section id="obra-9" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-800 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Horizontes Lejanos</h2>
                 <p class="text-lg text-gray-600">por ANÓNIMO</p>
@@ -279,7 +300,7 @@
         </section>
 
         <!-- OBRA 10: Mercado Oriental -->
-        <section id="obra-10" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-600">
+        <section id="obra-10" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Mercado Oriental de Colores</h2>
                 <p class="text-lg text-gray-600">por CHANGT</p>
@@ -302,7 +323,7 @@
         </section>
 
         <!-- OBRA 11: El Cairo -->
-        <section id="obra-11" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-700">
+        <section id="obra-11" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-700 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">El Cairo y sus Pasajes Exóticos</h2>
                 <p class="text-lg text-gray-600">por N. D. SUNG</p>
@@ -325,7 +346,7 @@
         </section>
 
         <!-- OBRA 12: Susurros del Mar -->
-        <section id="obra-12" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-400">
+        <section id="obra-12" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Susurros del Mar al Anochecer</h2>
                 <p class="text-lg text-gray-600">por BENNETT</p>
@@ -347,8 +368,8 @@
             </div>
         </section>
 
-        <!-- PINTURA 13: Atardecer en el Desierto (P. YOAJIN) (ID original #atardecer-yoajin) -->
-        <section id="atardecer-yoajin" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-500 scroll-mt-4">
+        <!-- PINTURA 13: Atardecer en el Desierto (P. YOAJIN) -->
+        <section id="atardecer-yoajin" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Atardecer en el Desierto</h2>
                 <p class="text-lg text-gray-600">por P. YOAJIN</p>
@@ -371,7 +392,7 @@
         </section>
 
         <!-- OBRA 14: Jardín Persa -->
-        <section id="obra-14" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-purple-500">
+        <section id="obra-14" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-purple-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">El Jardín de las Delicias Persas</h2>
                 <p class="text-lg text-gray-600">por ANÓNIMO</p>
@@ -394,7 +415,7 @@
         </section>
 
         <!-- OBRA 15: Manto Otoñal -->
-        <section id="obra-15" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-700">
+        <section id="obra-15" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-700 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Bajo el Manto Otoñal</h2>
                 <p class="text-lg text-gray-600">por NAJAS Y.</p>
@@ -417,7 +438,7 @@
         </section>
 
         <!-- OBRA 16: Cartuchos de Fuego -->
-        <section id="obra-16" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-700">
+        <section id="obra-16" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-700 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Cartuchos de Fuego</h2>
                 <p class="text-lg text-gray-600">por A. BELTRAN</p>
@@ -440,7 +461,7 @@
         </section>
 
         <!-- OBRA 17: Feria de Sangolquí -->
-        <section id="obra-17" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-800">
+        <section id="obra-17" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-800 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Feria de Sangolquí</h2>
                 <p class="text-lg text-gray-600">por LUIS MORALES</p>
@@ -463,7 +484,7 @@
         </section>
 
         <!-- OBRA 18: El Portón de mi Tierra -->
-        <section id="obra-18" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-gray-600">
+        <section id="obra-18" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-gray-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">El Portón de mi Tierra</h2>
                 <p class="text-lg text-gray-600">por G. ALMEIDA</p>
@@ -486,7 +507,7 @@
         </section>
 
         <!-- OBRA 19: Ecos de la Noche -->
-        <section id="obra-19" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-900">
+        <section id="obra-19" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-900 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Ecos de la Noche en Quito</h2>
                 <p class="text-lg text-gray-600">por CATASSE</p>
@@ -509,7 +530,7 @@
         </section>
 
         <!-- OBRA 20: Escalinatas de Santo Domingo -->
-        <section id="obra-20" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-gray-500">
+        <section id="obra-20" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-gray-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Escalinatas de Santo Domingo</h2>
                 <p class="text-lg text-gray-600">por SEGUNDO ENDARA R.</p>
@@ -532,7 +553,7 @@
         </section>
         
         <!-- OBRA 21: Fantasía Andina -->
-        <section id="obra-21" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-purple-500">
+        <section id="obra-21" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-purple-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Fantasía Andina</h2>
                 <p class="text-lg text-gray-600">por CHUNGANDRO</p>
@@ -554,12 +575,8 @@
             </div>
         </section>
 
-        <!-- ==========================================
-             OBRAS FALTANTES AÑADIDAS (22-49)
-             ========================================== -->
-
         <!-- OBRA 22 -->
-        <section id="obra-22" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-600">
+        <section id="obra-22" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Ritmo de Esmeraldas</h2>
                 <p class="text-lg text-gray-600">por ABDÓN CALDERÓN</p>
@@ -582,7 +599,7 @@
         </section>
 
         <!-- OBRA 23 -->
-        <section id="obra-23" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-700">
+        <section id="obra-23" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-700 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">La Dignidad del Hombre del Campo</h2>
                 <p class="text-lg text-gray-600">por A. MAFALDO</p>
@@ -605,7 +622,7 @@
         </section>
 
         <!-- OBRA 24 -->
-        <section id="obra-24" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-600">
+        <section id="obra-24" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Reflejos de Lluvia frente al Campanario</h2>
                 <p class="text-lg text-gray-600">por SALGUERO</p>
@@ -628,7 +645,7 @@
         </section>
 
         <!-- OBRA 25 -->
-        <section id="obra-25" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-sky-500">
+        <section id="obra-25" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-sky-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">San Francisco bajo un Cielo Azul</h2>
                 <p class="text-lg text-gray-600">por SALGUERO</p>
@@ -651,7 +668,7 @@
         </section>
 
         <!-- OBRA 26 -->
-        <section id="obra-26" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-gray-400">
+        <section id="obra-26" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-gray-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Iglesia de San Francisco de Quito</h2>
                 <p class="text-lg text-gray-600">por SALGUERO</p>
@@ -674,7 +691,7 @@
         </section>
 
         <!-- OBRA 27 -->
-        <section id="obra-27" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-500">
+        <section id="obra-27" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">La Carta del Hijo Ausente</h2>
                 <p class="text-lg text-gray-600">por H. MONCAYO</p>
@@ -697,7 +714,7 @@
         </section>
 
         <!-- OBRA 28 -->
-        <section id="obra-28" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-400">
+        <section id="obra-28" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Arco de Santo Domingo: Ventana Quiteña</h2>
                 <p class="text-lg text-gray-600">por R. SALGUERO</p>
@@ -720,7 +737,7 @@
         </section>
 
         <!-- OBRA 29 -->
-        <section id="obra-29" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-slate-500">
+        <section id="obra-29" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-slate-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Quito Colonial</h2>
                 <p class="text-lg text-gray-600">por SALGUERO</p>
@@ -743,7 +760,7 @@
         </section>
 
         <!-- OBRA 30 -->
-        <section id="obra-30" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-amber-700">
+        <section id="obra-30" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-amber-700 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Tras la Puerta Vieja</h2>
                 <p class="text-lg text-gray-600">por BELLOTA</p>
@@ -766,7 +783,7 @@
         </section>
 
         <!-- OBRA 31 -->
-        <section id="obra-31" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-indigo-400">
+        <section id="obra-31" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-indigo-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">La Puerta de la Esperanza</h2>
                 <p class="text-lg text-gray-600">por PICA DEL PARI</p>
@@ -789,7 +806,7 @@
         </section>
 
         <!-- OBRA 32 -->
-        <section id="obra-32" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-emerald-500">
+        <section id="obra-32" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-emerald-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">El Portal de mi Tierra</h2>
                 <p class="text-lg text-gray-600">por JULIO PEÑA</p>
@@ -812,7 +829,7 @@
         </section>
 
         <!-- OBRA 33 -->
-        <section id="obra-33" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-300">
+        <section id="obra-33" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-300 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Texturas y Colores del Viejo Barrio</h2>
                 <p class="text-lg text-gray-600">por DE LA PEÑA</p>
@@ -835,7 +852,7 @@
         </section>
 
         <!-- OBRA 34 -->
-        <section id="obra-34" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-300">
+        <section id="obra-34" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-300 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Entre Cañas y Manglares</h2>
                 <p class="text-lg text-gray-600">por JULIO PEÑA</p>
@@ -858,7 +875,7 @@
         </section>
 
         <!-- OBRA 35 -->
-        <section id="obra-35" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-cyan-600">
+        <section id="obra-35" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-cyan-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Camino al Amanecer</h2>
                 <p class="text-lg text-gray-600">por NELSON CEPEDA</p>
@@ -881,7 +898,7 @@
         </section>
 
         <!-- OBRA 36 -->
-        <section id="obra-36" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-slate-400">
+        <section id="obra-36" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-slate-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">La Loma Grande</h2>
                 <p class="text-lg text-gray-600">por R. SALGUERO</p>
@@ -904,7 +921,7 @@
         </section>
 
         <!-- OBRA 37 -->
-        <section id="obra-37" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-slate-400">
+        <section id="obra-37" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-slate-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Entre Calles y Adoquines de la Calle Cotopaxi</h2>
                 <p class="text-lg text-gray-600">por SALGUERO</p>
@@ -927,7 +944,7 @@
         </section>
 
         <!-- OBRA 38 -->
-        <section id="obra-38" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-rose-400">
+        <section id="obra-38" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-rose-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Arco de Santo Domingo: Bajo Cúpulas</h2>
                 <p class="text-lg text-gray-600">por R. SALGUERO</p>
@@ -949,7 +966,7 @@
         </section>
 
         <!-- OBRA 39 -->
-        <section id="obra-39" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-gray-500">
+        <section id="obra-39" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-gray-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Nostalgia del Ayer</h2>
                 <p class="text-lg text-gray-600">por R. SALGUERO</p>
@@ -971,7 +988,7 @@
         </section>
 
         <!-- OBRA 40 -->
-        <section id="obra-40" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-300">
+        <section id="obra-40" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-300 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Una Mirada a Quito Colonial</h2>
                 <p class="text-lg text-gray-600">por R. SALGUERO</p>
@@ -993,7 +1010,7 @@
         </section>
 
         <!-- OBRA 41 -->
-        <section id="obra-41" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-400">
+        <section id="obra-41" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-orange-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Entre Mangos y Oritos</h2>
                 <p class="text-lg text-gray-600">por MARÍA EUGENIA</p>
@@ -1015,7 +1032,7 @@
         </section>
 
         <!-- OBRA 42 -->
-        <section id="obra-42" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-pink-300">
+        <section id="obra-42" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-pink-300 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Entre Brumas y Sonrisas de una Bailarina</h2>
                 <p class="text-lg text-gray-600">por MARÍA EUGENIA</p>
@@ -1038,7 +1055,7 @@
         </section>
 
         <!-- OBRA 43 -->
-        <section id="obra-43" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-emerald-400">
+        <section id="obra-43" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-emerald-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Cartuchos en Armonía</h2>
                 <p class="text-lg text-gray-600">por MARÍA EUGENIA</p>
@@ -1061,7 +1078,7 @@
         </section>
 
         <!-- OBRA 44 -->
-        <section id="obra-44" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-800">
+        <section id="obra-44" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-800 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">El Pañuelo Rojo</h2>
                 <p class="text-lg text-gray-600">por JOSÉ LUQUE</p>
@@ -1084,7 +1101,7 @@
         </section>
 
         <!-- OBRA 45 -->
-        <section id="obra-45" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-fuchsia-600">
+        <section id="obra-45" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-fuchsia-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">La Chola Cuencana</h2>
                 <p class="text-lg text-gray-600">por JOSÉ LUQUE</p>
@@ -1107,7 +1124,7 @@
         </section>
 
         <!-- OBRA 46 -->
-        <section id="obra-46" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-violet-500">
+        <section id="obra-46" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-violet-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Rincón de Las Peñas</h2>
                 <p class="text-lg text-gray-600">por DE LA PEÑA</p>
@@ -1130,7 +1147,7 @@
         </section>
 
         <!-- OBRA 47 -->
-        <section id="obra-47" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-indigo-300">
+        <section id="obra-47" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-indigo-300 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Pequeña Niña de los Andes</h2>
                 <p class="text-lg text-gray-600">por RIGAIL</p>
@@ -1153,7 +1170,7 @@
         </section>
 
         <!-- OBRA 48 -->
-        <section id="obra-48" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-purple-800">
+        <section id="obra-48" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-purple-800 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Sabiduría Andina</h2>
                 <p class="text-lg text-gray-600">por RIGAIL</p>
@@ -1176,7 +1193,7 @@
         </section>
 
         <!-- OBRA 49 -->
-        <section id="obra-49" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-fuchsia-800">
+        <section id="obra-49" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-fuchsia-800 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">La Carga del Pasado</h2>
                 <p class="text-lg text-gray-600">por RIGAIL</p>
@@ -1199,8 +1216,8 @@
         </section>
 
         <!-- OBRA 50, 51, 52: Trilogía Andina -->
-        <section id="obra-50" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-500">
-            <div id="obra-51"></div><div id="obra-52"></div> <!-- Anclajes para QRs individuales -->
+        <section id="obra-50" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-500 scroll-mt-24 obra-item">
+            <div id="obra-51"></div><div id="obra-52"></div>
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Trilogía Andina</h2>
                 <p class="text-lg text-gray-600">por O. MONCAYO</p>
@@ -1223,10 +1240,8 @@
             </div>
         </section>
 
-        <!-- OBRAS FALTANTES AÑADIDAS (53-69) -->
-
         <!-- OBRA 53-54 -->
-        <section id="obra-53" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-lime-600">
+        <section id="obra-53" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-lime-600 scroll-mt-24 obra-item">
             <div id="obra-54"></div>
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Díptico: Vida en el Páramo</h2>
@@ -1250,7 +1265,7 @@
         </section>
 
         <!-- OBRA 55 -->
-        <section id="obra-55" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-cyan-500">
+        <section id="obra-55" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-cyan-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">El Realismo Mágico de mi Tierra</h2>
                 <p class="text-lg text-gray-600">por ANÓNIMO</p>
@@ -1273,7 +1288,7 @@
         </section>
 
         <!-- OBRA 56-59 -->
-        <section id="obra-56" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-pink-400">
+        <section id="obra-56" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-pink-400 scroll-mt-24 obra-item">
              <div id="obra-57"></div><div id="obra-58"></div><div id="obra-59"></div>
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Serie: Danza de Luz y Color</h2>
@@ -1297,7 +1312,7 @@
         </section>
 
         <!-- OBRA 60-65 -->
-        <section id="obra-60" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-rose-500">
+        <section id="obra-60" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-rose-500 scroll-mt-24 obra-item">
             <div id="obra-61"></div><div id="obra-62"></div><div id="obra-63"></div><div id="obra-64"></div><div id="obra-65"></div>
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Serie: Jardín de Colores</h2>
@@ -1321,7 +1336,7 @@
         </section>
 
         <!-- OBRA 66-67 -->
-        <section id="obra-66" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-lime-500">
+        <section id="obra-66" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-lime-500 scroll-mt-24 obra-item">
              <div id="obra-67"></div>
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Serie: Entre Frutas y Verduras</h2>
@@ -1345,7 +1360,7 @@
         </section>
 
         <!-- OBRA 68 -->
-        <section id="obra-68" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-900">
+        <section id="obra-68" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-900 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Waorani, Espíritu de la Amazonía</h2>
                 <p class="text-lg text-gray-600">por MARÍA EUGENIA</p>
@@ -1368,7 +1383,7 @@
         </section>
 
         <!-- OBRA 69 -->
-        <section id="obra-69" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-teal-200">
+        <section id="obra-69" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-teal-200 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Tributo al Bambú</h2>
                 <p class="text-lg text-gray-600">por MARÍA EUGENIA</p>
@@ -1390,8 +1405,8 @@
             </div>
         </section>
         
-        <!-- PINTURA 70: Contemplación (ID #contemplacion) -->
-        <section id="contemplacion" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-indigo-500">
+        <!-- PINTURA 70: Contemplación -->
+        <section id="contemplacion" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-indigo-500 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Contemplación</h2>
                 <p class="text-lg text-gray-600">por MA. EUGENIA VITERI C.</p>
@@ -1403,7 +1418,7 @@
             <div class="space-y-2 mb-6 border rounded-lg p-4 bg-gray-50">
                 <div class="info-item"><span class="info-label">Técnica</span><span class="info-value">Óleo sobre lienzo</span></div>
                 <div class="info-item"><span class="info-label">Dimensiones</span><span class="info-value">50 x 70 cm</span></div>
-                <div class="info-item"><span class="info-label">Precio Ref.</span><span class="info-value text-gray-500">$800 - $500 USD</span></div> <!-- Añadido precio de referencia -->
+                <div class="info-item"><span class="info-label">Precio Ref.</span><span class="info-value text-gray-500">$800 - $500 USD</span></div> 
                 <div class="info-item border-b-0"><span class="info-label">Disponibilidad</span><span class="info-value text-red-600 font-semibold">Colección Privada</span></div>
             </div>
             <div class="prose max-w-none text-gray-700">
@@ -1413,10 +1428,8 @@
             </div>
         </section>
 
-        <!-- OBRAS FALTANTES AÑADIDAS (71-77) -->
-
         <!-- OBRA 71 -->
-        <section id="obra-71" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-400">
+        <section id="obra-71" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-yellow-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Mándala de la Iluminación</h2>
                 <p class="text-lg text-gray-600">por ANÓNIMO</p>
@@ -1439,7 +1452,7 @@
         </section>
 
         <!-- OBRA 72-73 -->
-        <section id="obra-72" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-400">
+        <section id="obra-72" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-red-400 scroll-mt-24 obra-item">
             <div id="obra-73"></div>
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Escena Persa/Mongol</h2>
@@ -1463,7 +1476,7 @@
         </section>
 
         <!-- OBRA 74 -->
-        <section id="obra-74" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-amber-400">
+        <section id="obra-74" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-amber-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Ecos de Egipto</h2>
                 <p class="text-lg text-gray-600">por ANÓNIMO</p>
@@ -1486,7 +1499,7 @@
         </section>
 
         <!-- OBRA 75 -->
-        <section id="obra-75" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-400">
+        <section id="obra-75" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-green-400 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Árbol de la Vida</h2>
                 <p class="text-lg text-gray-600">por ANÓNIMO</p>
@@ -1509,7 +1522,7 @@
         </section>
 
         <!-- OBRA 76 -->
-        <section id="obra-76" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-amber-600">
+        <section id="obra-76" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-amber-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Relatos del Antiguo Egipto</h2>
                 <p class="text-lg text-gray-600">por ANÓNIMO</p>
@@ -1532,7 +1545,7 @@
         </section>
 
         <!-- OBRA 77 -->
-        <section id="obra-77" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-600">
+        <section id="obra-77" class="bg-white p-6 md:p-8 rounded-xl card-shadow border-t-4 border-blue-600 scroll-mt-24 obra-item">
             <div class="mb-4">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">Diosa Alada</h2>
                 <p class="text-lg text-gray-600">por ANÓNIMO</p>
@@ -1585,13 +1598,55 @@
     </a>
     
     <script>
-        // Función para desplazamiento suave
+        // Función de Búsqueda
+        function buscarObras() {
+            // 1. Obtener el texto del input
+            var input = document.getElementById("buscadorInput");
+            var filter = input.value.toUpperCase();
+            
+            // 2. Obtener el contenedor y las secciones de obras
+            var container = document.getElementById("contenedorObras");
+            // Seleccionamos solo las secciones que tengan la clase 'obra-item' para no filtrar el mensaje final
+            var cards = container.getElementsByClassName("obra-item");
+            var foundAny = false;
+
+            // 3. Recorrer todas las tarjetas
+            for (var i = 0; i < cards.length; i++) {
+                var card = cards[i];
+                // Obtener todo el texto dentro de la tarjeta (título, autor, precio, técnica, descripción)
+                var txtValue = card.textContent || card.innerText;
+                
+                // 4. Comprobar si el texto de búsqueda está en la tarjeta
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    card.style.display = ""; // Mostrar
+                    foundAny = true;
+                } else {
+                    card.style.display = "none"; // Ocultar
+                }
+            }
+
+            // 5. Mostrar u ocultar el mensaje de "No encontrado"
+            var noResultDiv = document.getElementById("mensajeNoResultados");
+            if (foundAny) {
+                noResultDiv.classList.add("hidden");
+            } else {
+                noResultDiv.classList.remove("hidden");
+            }
+        }
+
+        // Función para desplazamiento suave (del código original)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                if (targetId !== "#") { // Evitar error si el href es solo #
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement){
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
     </script>
